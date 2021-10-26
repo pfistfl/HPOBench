@@ -57,7 +57,7 @@ from typing import Union, Dict
 import ConfigSpace as CS
 import numpy as np
 
-from yahpo_gym.configuration import cfg
+from yahpo_gym.configuration import cfg, Configuration
 import yahpo_gym.benchmarks
 
 from hpobench.abstract_benchmark import AbstractBenchmark
@@ -66,7 +66,7 @@ __version__ = '0.0.3'
 logger = logging.getLogger('Paramnet')
 
 
-class YAHPOBase(AbstractBenchmark):
+class YAHPOGymBenchmark(AbstractBenchmark):
 
     def __init__(self, scenario: str, instance: str,
                  rng: Union[np.random.RandomState, int, None] = None):
@@ -82,6 +82,7 @@ class YAHPOBase(AbstractBenchmark):
         self.instance = instance
         self.benchset = cfg(scenario)
         self.benchset.set_instance(instance)
+        self.instance.config.download_files()
         logger.info(f'Start Benchmark for scenario {scenario} and instance {instance}')
 
 
@@ -128,3 +129,7 @@ class YAHPOBase(AbstractBenchmark):
                                'year      = {2021}}'],
                 'code': 'https://github.com/pfistfl/yahpo_gym/yahpo_gym'
                 }
+
+
+class YAHPOGymDataManager(DataManager):
+    def load(self):
