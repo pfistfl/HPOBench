@@ -129,7 +129,3 @@ class YAHPOGymBenchmark(AbstractBenchmark):
                                'year      = {2021}}'],
                 'code': 'https://github.com/pfistfl/yahpo_gym/yahpo_gym'
                 }
-
-
-class YAHPOGymDataManager(DataManager):
-    def load(self):
