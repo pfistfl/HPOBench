@@ -37,4 +37,4 @@ VERSION v0.0.1
     && echo "Finally, please change the benchmark in the runscript to point to your benchmark" \
 
 %runscript
-    python -s /home/HPOBench/hpobench/container/server_abstract_benchmark.py surrogates.yahpo_gym.py $@
+    python -s /home/HPOBench/hpobench/container/server_abstract_benchmark.py surrogates.yahpo_gym $@
