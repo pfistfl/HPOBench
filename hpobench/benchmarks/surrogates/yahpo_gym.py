@@ -82,16 +82,16 @@ class YAHPOGymBenchmark(AbstractBenchmark):
         self.instance = instance
         self.benchset = BenchmarkSet(scenario, active_session = True, download = False)
         self.benchset.set_instance(instance)
-        self.instance.config.download_files()
+        self.benchset.config.download_files()
         logger.info(f'Start Benchmark for scenario {scenario} and instance {instance}')
 
 
-    @staticmethod
-    def get_configuration_space(seed: Union[int, None] = None) -> CS.ConfigurationSpace:
-        self.benchset.get_configuration_space(drop_fidelity_params = True)
+    # @staticmethod
+    def get_configuration_space(self, seed: Union[int, None] = None) -> CS.ConfigurationSpace:
+        self.benchset.get_opt_space(drop_fidelity_params = True)
 
-    @staticmethod
-    def get_fidelity_space(seed: Union[int, None] = None) -> CS.ConfigurationSpace:
+    # @staticmethod
+    def get_fidelity_space(self, seed: Union[int, None] = None) -> CS.ConfigurationSpace:
         self.benchset.get_fidelity_space()
 
     @AbstractBenchmark.check_parameters
