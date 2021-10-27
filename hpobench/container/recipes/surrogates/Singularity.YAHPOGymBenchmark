@@ -12,6 +12,8 @@ VERSION v0.0.1
     apt update -y
     apt install build-essential git wget -y
 
+    /usr/local/bin/python -m pip install --upgrade pip
+
     cd /home \
     && mkdir data && cd data \
     && echo "data_path: /home/data/yahpo_data" > ~/.config/yahpo_gym \

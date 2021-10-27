@@ -61,9 +61,9 @@ from yahpo_gym.configuration import cfg, Configuration
 import yahpo_gym.benchmarks
 
 from hpobench.abstract_benchmark import AbstractBenchmark
-__version__ = '0.0.3'
+__version__ = '0.0.1'
 
-logger = logging.getLogger('Paramnet')
+logger = logging.getLogger('YAHPOGym')
 
 
 class YAHPOGymBenchmark(AbstractBenchmark):
