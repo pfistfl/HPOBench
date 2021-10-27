@@ -57,7 +57,7 @@ from typing import Union, Dict
 import ConfigSpace as CS
 import numpy as np
 
-from yahpo_gym.configuration import cfg, Configuration
+from yahpo_gym.benchmark_set import BenchmarkSet
 import yahpo_gym.benchmarks
 
 from hpobench.abstract_benchmark import AbstractBenchmark
