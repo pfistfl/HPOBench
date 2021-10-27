@@ -20,13 +20,10 @@ VERSION v0.0.1
     && git clone https://github.com/pfistfl/yahpo_data.git \
 
     cd /home \
-    && echo "Here you can install everything you need, e.g. dependencies not available on pypi" \
-    && echo "Next, we clone and install HPOBench" \
     && git clone https://github.com/pfistfl/HPOBench.git \
     && cd HPOBench \
     && echo "Please never push a recipe that checks out any other branch than development or master" \
     && git checkout yahpo_gym \
-    && echo "Here you can install extra requirements additional to singularity" \
     && pip install .[yahpo_gym] \
     && echo "Please don't touch the following lines" \
     && cd / \
@@ -34,7 +31,6 @@ VERSION v0.0.1
     && chmod -R 777 /var/lib/hpobench/ \
     && rm -rf /var/lib/apt/lists/* \
     && pip cache purge \
-    && echo "Finally, please change the benchmark in the runscript to point to your benchmark" \
 
 %runscript
     python -s /home/HPOBench/hpobench/container/server_abstract_benchmark.py surrogates.yahpo_gym $@

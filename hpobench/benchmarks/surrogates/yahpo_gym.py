@@ -80,7 +80,7 @@ class YAHPOGymBenchmark(AbstractBenchmark):
         """
         self.scenario = scenario
         self.instance = instance
-        self.benchset = cfg(scenario)
+        self.benchset = BenchmarkSet(scenario, active_session = True, download = False)
         self.benchset.set_instance(instance)
         self.instance.config.download_files()
         logger.info(f'Start Benchmark for scenario {scenario} and instance {instance}')
