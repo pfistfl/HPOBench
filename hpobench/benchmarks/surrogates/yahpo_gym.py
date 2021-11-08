@@ -68,21 +68,26 @@ logger = logging.getLogger('YAHPOGym')
 
 class YAHPOGymBenchmark(AbstractBenchmark):
 
-    def __init__(self, scenario: str, instance: str,
+    def __init__(self, scenario: str, instance: str, objective: str,
                  rng: Union[np.random.RandomState, int, None] = None):
         """
         Parameters
         ----------
-        dataset : str
+        scenario : str
             Name for the surrogate data. Must be one of ["lcbench", "fcnet", "nb301", "rbv2_svm",
             "rbv2_ranger", "rbv2_rpart", "rbv2_glmnet", "rbv2_aknn", "rbv2_xgboost", "rbv2_super"]
+        instance : str
+            A valid instance for the scenario. See `self.benchset.instances`.
+        objective : str
+            Name of the (single-crit) objective. See `self.benchset.config.y_names`.
+            Initialized to None, picks the first element in y_names.
         rng : np.random.RandomState, int, None
         """
         self.scenario = scenario
         self.instance = instance
         self.benchset = BenchmarkSet(scenario, active_session = True, download = False)
         self.benchset.set_instance(instance)
-        self.benchset.config.download_files()
+        self.objective = objective
         logger.info(f'Start Benchmark for scenario {scenario} and instance {instance}')
 
 
@@ -105,10 +110,17 @@ class YAHPOGymBenchmark(AbstractBenchmark):
             fidelity = fidelity.get_dictionary()
 
         out = self.benchset.objective_function({**configuration, **fidelity})
+
+        cost = out[self.benchset.config.runtime_name]
+
+        if self.objective is None:
+            self.objective = self.benchset.config.y_names[0]
+        obj_value = out[self.objective]
+
         cost = 0
         return {'function_value': obj_value,
                 "cost": cost,
-                'info': {'fidelity': fidelity}}
+                'info': {'fidelity': fidelity, 'objectives':out}}
 
     @AbstractBenchmark.check_parameters
     def objective_function_test(self, configuration: Union[CS.Configuration, Dict],
