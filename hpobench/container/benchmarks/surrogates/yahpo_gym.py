@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-""" Benchmark for the Paramnet surrogates Benchmark from hpobench/benchmarks/surrogates/yahpo_gym.py
+""" Benchmark for the YAHPO surrogates Benchmark from hpobench/benchmarks/surrogates/yahpo_gym.py
 Test with
 
 from hpobench.container.benchmarks.surrogates.yahpo_gym import YAHPOGymBenchmark
