@@ -17,15 +17,6 @@ VERSION v0.0.1
 
     # Upgrade pip
     /usr/local/bin/python -m pip install --upgrade pip
-    
-    pip install numpy \
-    pip install pandas==1.2.4 \
-    pip install scikit-learn=0.24.2 \
-    pip install openml==0.12.2 --user \
-    pip install xgboost==1.3.1 --user \
-    pip install tqdm \
-    pip install configspace \
-    pip install rpy2 \
 
     # Download YAHPO DATA
     cd /home \
@@ -33,7 +24,7 @@ VERSION v0.0.1
     && echo "data_path: /home/data/yahpo_data" > ~/.config/yahpo_gym \
     && git clone https://github.com/pfistfl/yahpo_data.git \
 
-    # Instal R-Package
+    # Instal R-Packages
     cd /home \
     && Rscript -e "install.packages('remotes')" \
     && Rscript -e 'remotes::install_version("BBmisc", version = " 1.11")' \
