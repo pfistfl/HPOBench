@@ -5,9 +5,12 @@
 Test with
 
 from hpobench.config import HPOBenchConfig
-container_source = HPOBenchConfig().container_dir
+cdir = HPOBenchConfig().container_dir
+import logging
+logger = logging.getLogger('AbstractBenchmark')
+logger.setLevel("DEBUG")
 from hpobench.container.benchmarks.ml.rbv2 import rbv2Benchmark
-b = rbv2Benchmark(container_source=".", container_name="rbv2", scenario = "rbv2_rpart", instance = "3945")
+b = rbv2Benchmark(container_name="rbv2", container_source = str(cdir), scenario = "rbv2_rpart", instance = "3945")
 res = b.objective_function(configuration=b.get_configuration_space(seed=1).sample_configuration())
 """
 
