@@ -110,10 +110,10 @@ class rbv2Benchmark(AbstractBenchmark):
         pars = {}
         if isinstance(configuration, CS.Configuration):
             configuration = configuration.get_dictionary()
-            pars.update{configuration}
+            pars.update(configuration)
         if isinstance(fidelity, CS.Configuration):
             fidelity = fidelity.get_dictionary()
-            pars.update{fidelity}
+            pars.update(fidelity)
 
         rbv2pkg = importr('rbv2')
         out = rbv2pkg.eval_yahpo(self.scenario, pars)
