@@ -1,6 +1,7 @@
 Bootstrap: docker
 From: python:3.7-slim
 
+
 %labels
 MAINTAINER pfistererf@googlemail.com
 VERSION v0.0.1
@@ -10,16 +11,21 @@ VERSION v0.0.1
 
 %post
     apt update -y
-    apt install build-essential git wget -y
-    apt install r-base==3.5 -y
+    apt install -y build-essential git wget
+    apt install -y --no-install-recommends r-base r-base-dev
+    apt install -y libatlas3-base libxml2
 
-    /usr/local/bin/python -m pip install --upgrade pip
+    # Upgrade pip
+    /usr/local/bin/python -m pip install --upgrade pip \
+    pip install pandas --user
 
+    # Download YAHPO DATA
     cd /home \
     && mkdir data && cd data \
     && echo "data_path: /home/data/yahpo_data" > ~/.config/yahpo_gym \
     && git clone https://github.com/pfistfl/yahpo_data.git \
 
+    # Instal R-Package
     cd /home \
     && Rscript -e "install.packages('remotes')" \
     && Rscript -e "remotes::install_github('pfistfl/rbv2')" \
@@ -28,8 +34,8 @@ VERSION v0.0.1
     && git clone https://github.com/pfistfl/HPOBench.git \
     && cd HPOBench \
     && echo "Please never push a recipe that checks out any other branch than development or master" \
-    && git checkout yahpo_gym \
-    && pip install .[yahpo_gym] \
+    && git checkout rbv2 \
+    && pip install .[rbv2] \
     && echo "Please don't touch the following lines" \
     && cd / \
     && mkdir /var/lib/hpobench/ \
@@ -38,4 +44,4 @@ VERSION v0.0.1
     && pip cache purge \
 
 %runscript
-    python -s /home/HPOBench/hpobench/container/server_abstract_benchmark.py surrogates.yahpo_gym $@
+    python -s /home/HPOBench/hpobench/container/server_abstract_benchmark.py ml.rbv2 $@
