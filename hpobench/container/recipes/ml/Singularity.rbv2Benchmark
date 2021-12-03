@@ -16,8 +16,7 @@ VERSION v0.0.1
     apt install -y libatlas3-base libxml2
 
     # Upgrade pip
-    /usr/local/bin/python -m pip install --upgrade pip \
-    pip install pandas --user
+    /usr/local/bin/python -m pip install --upgrade pip
 
     # Download YAHPO DATA
     cd /home \
