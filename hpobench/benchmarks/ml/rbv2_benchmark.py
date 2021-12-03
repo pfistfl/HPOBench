@@ -114,7 +114,7 @@ class rbv2Benchmark(AbstractBenchmark):
         if isinstance(fidelity, CS.Configuration):
             fidelity = fidelity.get_dictionary()
             pars.update(fidelity)
-
+        print(pars)
         rbv2pkg = importr('rbv2')
         out = rbv2pkg.eval_yahpo(self.scenario, pars)
         cost = out["timetrain"]
