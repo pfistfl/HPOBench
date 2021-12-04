@@ -27,7 +27,7 @@ VERSION v0.0.1
     # Instal R-Packages
     cd /home \
     && Rscript -e "install.packages('remotes')" \
-    && Rscript -e 'remotes::install_version("BBmisc", version = " 1.11")' \
+    && Rscript -e 'remotes::install_version("BBmisc", version = "1.11")' \
     && Rscript -e 'remotes::install_version("glmnet", version = "2.0-16")' \
     && Rscript -e 'remotes::install_version("rpart", version = "4.1-13")' \
     && Rscript -e 'remotes::install_version("e1071", version = "1.7-0.1")' \
@@ -52,4 +52,4 @@ VERSION v0.0.1
     && pip cache purge \
 
 %runscript
-    python -s /home/HPOBench/hpobench/container/server_abstract_benchmark.py ml.rbv2 $@
+    python -s /home/HPOBench/hpobench/container/server_abstract_benchmark.py ml.rbv2_benchmark $@

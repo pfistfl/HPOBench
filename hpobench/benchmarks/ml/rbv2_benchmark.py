@@ -71,7 +71,7 @@ logger = logging.getLogger('YAHPOGym')
 
 class rbv2Benchmark(AbstractBenchmark):
 
-    def __init__(self, scenario: str, instance: str, objective: str,
+    def __init__(self, scenario: str, instance: str, objective: str = None,
                  rng: Union[np.random.RandomState, int, None] = None):
         """
         Parameters
@@ -96,7 +96,7 @@ class rbv2Benchmark(AbstractBenchmark):
 
     # @staticmethod
     def get_configuration_space(self, seed: Union[int, None] = None) -> CS.ConfigurationSpace:
-        self.benchset.get_opt_space(drop_fidelity_params = True)
+        self.benchset.get_opt_space(self.instance, drop_fidelity_params = True)
 
     # @staticmethod
     def get_fidelity_space(self, seed: Union[int, None] = None) -> CS.ConfigurationSpace:
