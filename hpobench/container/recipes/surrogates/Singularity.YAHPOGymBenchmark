@@ -23,7 +23,7 @@ VERSION v0.0.1
     && git clone https://github.com/pfistfl/HPOBench.git \
     && cd HPOBench \
     && echo "Please never push a recipe that checks out any other branch than development or master" \
-    && git checkout yahpo_gym \
+    && git checkout master \
     && pip install .[yahpo_gym] \
     && echo "Please don't touch the following lines" \
     && cd / \
