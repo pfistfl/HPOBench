@@ -15,7 +15,6 @@ def test_yahpo_init():
     assert fidelity['epoch'] == pytest.approx(29, abs=0.001)
 
     cs = b.get_configuration_space(seed=0)
-    cs = b. get_opt_space(seed = 0, drop_fidelity_params = True)
     config = cs.sample_configuration().get_dictionary()
     assert config['OpenML_task_id'] == "167152"
     assert config['num_layers'] == pytest.approx(4, abs=0.001)
