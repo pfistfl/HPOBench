@@ -75,10 +75,10 @@ class YAHPOGymBenchmark(AbstractBenchmark):
         logger.info(f'Start Benchmark for scenario {scenario} and instance {instance}')
 
     def get_configuration_space(self, seed: Union[int, None] = None) -> CS.ConfigurationSpace:
-        self.benchset.get_opt_space(drop_fidelity_params = True)
+        return self.benchset.get_opt_space(drop_fidelity_params = True)
 
     def get_fidelity_space(self, seed: Union[int, None] = None) -> CS.ConfigurationSpace:
-        self.benchset.get_fidelity_space()
+        return self.benchset.get_fidelity_space()
 
     @AbstractBenchmark.check_parameters
     def objective_function(self, configuration: Union[CS.Configuration, Dict],
