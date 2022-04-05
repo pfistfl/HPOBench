@@ -13,23 +13,6 @@ Conda environment in which the HPOBench is installed (pip install .). Activate y
 conda activate <Name_of_Conda_HPOBench_environment>
 ```
 
-1. Download data:
-=================
-The data will be downloaded automatically.
-
-If you want to download the data on your own, you can download the data with the following command and then link the
-hpobench-config's data-path to it.
-You can download the requried data [here](https://syncandshare.lrz.de/getlink/fiCMkzqj1bv1LfCUyvZKmLvd/).
-
-```python
-from yahpo_gym import local_config
-local_config.init_config()
-local_config.set_data_path("path-to-data")
-```
-
-The data consist of surrogates for different data sets. Each surrogate is a compressed ONNX neural network.
-
-
 1. Clone from github:
 =====================
 ```
@@ -86,7 +69,7 @@ class YAHPOGymBenchmark(AbstractBenchmark):
         """
         self.scenario = scenario
         self.instance = instance
-        self.benchset = BenchmarkSet(scenario, active_session = True, download = False)
+        self.benchset = BenchmarkSet(scenario, active_session = True)
         self.benchset.set_instance(instance)
         self.objective = objective
         logger.info(f'Start Benchmark for scenario {scenario} and instance {instance}')
