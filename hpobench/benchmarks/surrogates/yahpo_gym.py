@@ -71,6 +71,7 @@ class YAHPOGymBenchmark(AbstractBenchmark):
     def __init__(self, scenario: str, instance: str, objective: str,
                  rng: Union[np.random.RandomState, int, None] = None):
         """
+        For a list of available scenarios and instances see 'https://slds-lmu.github.io/yahpo_gym/scenarios.html' 
         Parameters
         ----------
         scenario : str
@@ -90,12 +91,9 @@ class YAHPOGymBenchmark(AbstractBenchmark):
         self.objective = objective
         logger.info(f'Start Benchmark for scenario {scenario} and instance {instance}')
 
-
-    # @staticmethod
     def get_configuration_space(self, seed: Union[int, None] = None) -> CS.ConfigurationSpace:
         self.benchset.get_opt_space(drop_fidelity_params = True)
 
-    # @staticmethod
     def get_fidelity_space(self, seed: Union[int, None] = None) -> CS.ConfigurationSpace:
         self.benchset.get_fidelity_space()
 
@@ -104,20 +102,19 @@ class YAHPOGymBenchmark(AbstractBenchmark):
                            fidelity: Union[CS.Configuration, Dict, None] = None,
                            rng: Union[np.random.RandomState, int, None] = None, **kwargs) -> Dict:
 
-        if isinstance(configuration, CS.Configuration):
-            configuration = configuration.get_dictionary()
-        if isinstance(fidelity, CS.Configuration):
-            fidelity = fidelity.get_dictionary()
+        # No batch predicts, so we can grab the first item
+        out = self.benchset.objective_function({**configuration, **fidelity})[0]
+        # Convert to float for serialization
+        out = {k:float(v) for k,v in out.items()}
 
-        out = self.benchset.objective_function({**configuration, **fidelity})
-
+        # Get runtime name
         cost = out[self.benchset.config.runtime_name]
 
+        # If not objective is set, we just grab the first returned entry.
         if self.objective is None:
             self.objective = self.benchset.config.y_names[0]
         obj_value = out[self.objective]
 
-        cost = 0
         return {'function_value': obj_value,
                 "cost": cost,
                 'info': {'fidelity': fidelity, 'objectives':out}}

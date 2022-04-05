@@ -17,7 +17,7 @@ VERSION v0.0.1
     cd /home \
     && mkdir data && cd data \
     && echo "data_path: /home/data/yahpo_data" > ~/.config/yahpo_gym \
-    && git clone https://github.com/pfistfl/yahpo_data.git \
+    && git clone --depth 1 -b main https://github.com/pfistfl/yahpo_data.git\
 
     cd /home \
     && git clone https://github.com/pfistfl/HPOBench.git \
