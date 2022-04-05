@@ -68,7 +68,7 @@ logger = logging.getLogger('YAHPOGym')
 
 class YAHPOGymBenchmark(AbstractBenchmark):
 
-    def __init__(self, scenario: str, instance: str, objective: str,
+    def __init__(self, scenario: str, instance: str, objective: str = None,
                  rng: Union[np.random.RandomState, int, None] = None):
         """
         For a list of available scenarios and instances see 'https://slds-lmu.github.io/yahpo_gym/scenarios.html' 
