@@ -73,7 +73,7 @@ class YAHPOGymBenchmark(AbstractBenchmark):
         self.benchset.set_instance(instance)
         self.objective = objective
         logger.info(f'Start Benchmark for scenario {scenario} and instance {instance}')
-        super(YAHPOGymBenchmark, self).init(rng=rng)
+        super(YAHPOGymBenchmark, self).__init__(rng=rng)
 
     def get_configuration_space(self, seed: Union[int, None] = None) -> CS.ConfigurationSpace:
         return self.benchset.get_opt_space(drop_fidelity_params = True)
